@@ -1,3 +1,1 @@
-Credits - 	Razor Vermilion
-            Zacthe_nerd
-            ThirteenAG
+Credits - <br>Razor Vermilion<br>Zacthe_nerd<br>ThirteenAG
