@@ -1,8 +1,5 @@
 {$CLEO .cs}
 {$USE ini} 
-wait 0
-wait 0
-
 0000: 
 const   
 Door_lf_dummy    =  10
@@ -79,15 +76,9 @@ while true
         0A8C: write_memory 0x527894 size 2 value 0x9090 virtual_protect 1   
         end
         
-            if and
             0AA6: call_method _setVehicleAtomicVisible struct 1@ num_params 1 pop 0 Door_lf_dummy
-             803C:   $PLAYER_ACTOR != 17@
-             803C:   $PLAYER_ACTOR != 18@
-             803C:   $PLAYER_ACTOR != 19@
-            then
-	            if or
+	            if
 	             0AB0:  key_pressed 8@
-	             20@ <> 0
 	            then
 	             if and
                  30@ == true
@@ -103,18 +94,13 @@ while true
                   
 					if and
 					27@ > 0
-					21@ == 0
 					24@ == 5  // SMG Slot
 					then
-					0A8C: write_memory 0x52161A size 1 value 0xE9 virtual_protect 1
-					0A8C: write_memory 0x52161B size 4 value 0x000000B3 virtual_protect 1
 					0713: task_drive_by $PLAYER_ACTOR char -1 car -1 coord 0 0 0 radius 900.0 style 4 from_rhs 0 fire_rate 100				
 
 						while true
 						wait 0
-						0A8D: 20@ = read_memory 0xB73460 size 2 virtual_protect 1
 							if and 
-								20@ == 0
 								8AB0: not key_pressed 8@
                                 0AA6: call_method _setVehicleAtomicInvisible struct 1@ num_params 1 pop 0 Door_lf_dummy 
                                 then
@@ -134,8 +120,6 @@ while true
                             end
 						end  
 						0687: clear_actor $PLAYER_ACTOR task
-					    0A8C: write_memory 0x52161A size 1 value 0x0F virtual_protect 1
-					    0A8C: write_memory 0x52161B size 4 value 0x071887BE virtual_protect 1
 
 					    if 9@ <> 0
 					    then
@@ -152,4 +136,3 @@ while true
 			    end			    
             end 
     end
-end
