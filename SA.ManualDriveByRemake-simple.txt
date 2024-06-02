@@ -1,8 +1,6 @@
 {$CLEO .cs}
 {$USE ini}
-wait 0
-wait 0
- 
+
 0000: 
 const   
 Door_lf_dummy    =  10
@@ -14,12 +12,7 @@ end
 
 0AF0: 8@ = get_int_from_ini_file "cleo\SA.ManualDrivebyRemake.ini" section "MAIN" key "DrivebyAimButton"
 0AF0: 9@ = get_int_from_ini_file "cleo\SA.ManualDrivebyRemake.ini" section "MAIN" key "RestoreCameraAfterDriveby"
-0AF0: 30@ = get_int_from_ini_file "cleo\SA.ManualDrivebyRemake.ini" section "MAIN" key "DisableBikeWeakPoint"
-0AF0: 31@ = get_int_from_ini_file "cleo\SA.ManualDrivebyRemake.ini" section "MAIN" key "PreLoadIFP"
-if 31@ == 1
-then
-    04ED: load_animation  "drivebys"
-end
+04ED: load_animation  "drivebys"
 
 while true
     wait 0
@@ -78,11 +71,10 @@ while true
 	            if
 	             0AB0:  key_pressed 8@
 	            then
-	             if and
-                 30@ == true
-                 047A:   actor $PLAYER_ACTOR driving_bike
-                 then
-	              09C4: set_petrol_tank_weakpoint 25@ to false
+	             if
+	             047A:   actor $PLAYER_ACTOR driving_bike
+	             then
+	             09C4: set_petrol_tank_weakpoint 25@ to false // Disables hitting petrol tank
 	             end
                  0A96: 24@ = actor $PLAYER_ACTOR struct
                  000A: 24@ += 0x718 //[byte] Current weapon slot (1 byte)
@@ -122,13 +114,6 @@ while true
 					    if 9@ <> 0
 					    then
 						 02EB: restore_camera_with_jumpcut
-						end
-						
-						if and
-						30@ == true
-                        047A:   actor $PLAYER_ACTOR driving_bike
-						then
-						 09C4: set_petrol_tank_weakpoint 25@ to true
 						end
                     end
 			    end			    
