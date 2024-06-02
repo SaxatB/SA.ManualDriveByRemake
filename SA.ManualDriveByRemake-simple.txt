@@ -1,5 +1,8 @@
 {$CLEO .cs}
-{$USE ini} 
+{$USE ini}
+wait 0
+wait 0
+ 
 0000: 
 const   
 Door_lf_dummy    =  10
@@ -7,12 +10,7 @@ _setVehicleAtomicInvisible = 0x6D3080
 _setVehicleAtomicVisible   = 0x6D30B0
 end
 
-// driveby camera movement
-0A8C: write_memory 0x64BC9F size 4 value 0x90909090 virtual_protect 1
-0A8C: write_memory 0x64BCA3 size 4 value 0x90909090 virtual_protect 1
-0A8C: write_memory 0x64BCA7 size 1 value 0x90 virtual_protect 1 
-
-0A8C: write_memory 0x522423 size 2 value 0x9090 virtual_protect 1  //camera zoom   
+0A8C: write_memory 0x522423 size 2 value 0x9090 virtual_protect 1  //camera rotate fix  
 
 0AF0: 8@ = get_int_from_ini_file "cleo\SA.ManualDrivebyRemake.ini" section "MAIN" key "DrivebyAimButton"
 0AF0: 9@ = get_int_from_ini_file "cleo\SA.ManualDrivebyRemake.ini" section "MAIN" key "RestoreCameraAfterDriveby"
